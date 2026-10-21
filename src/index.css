@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0B0D12;
+  --bg-card: #141821;
+  --bg-elevated: #1A1F2E;
+  --accent-lime: #C8FF5D;
+  --accent-violet: #A78BFA;
+  --text-primary: #F5F7FA;
+  --text-muted: #9299A8;
+  --border-subtle: #1E2535;
+  --border-bright: #2A3245;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Circular Timer SVG ─────────────────────────────────────────────────── */
+.timer-circle-bg { stroke: var(--border-bright); }
+.timer-circle-progress { 
+  stroke: var(--accent-lime); 
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(200,255,93,0.5));
+  transition: stroke-dashoffset 1s linear;
+}
+.timer-circle-break {
+  stroke: var(--accent-violet);
+  filter: drop-shadow(0 0 8px rgba(167,139,250,0.5));
+}
+
+/* ─── Card glow effects ──────────────────────────────────────────────────── */
+.card-glow-lime:hover { box-shadow: 0 0 30px rgba(200,255,93,0.08), 0 4px 24px rgba(0,0,0,0.4); }
+.card-glow-violet:hover { box-shadow: 0 0 30px rgba(167,139,250,0.08), 0 4px 24px rgba(0,0,0,0.4); }
+
+/* ─── Recharts override ──────────────────────────────────────────────────── */
+.recharts-tooltip-wrapper { outline: none !important; }
+.recharts-default-tooltip { background: var(--bg-elevated) !important; border: 1px solid var(--border-bright) !important; border-radius: 8px !important; }
+
+/* ─── Input styles ───────────────────────────────────────────────────────── */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 2px rgba(200,255,93,0.1);
+}
+
+/* ─── Toggle switch ──────────────────────────────────────────────────────── */
+.toggle-switch {
+  appearance: none;
+  width: 44px;
+  height: 24px;
+  background: var(--border-bright);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.toggle-switch:checked { background: var(--accent-lime); }
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 9px;
+  top: 3px;
+  left: 3px;
+  transition: left 0.2s;
+}
+.toggle-switch:checked::after { left: 23px; }
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ─── Confetti particles ─────────────────────────────────────────────────── */
+.confetti-particle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti-fall 2s ease-in forwards;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
