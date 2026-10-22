@@ -1,3 +1,13 @@
+## 🚀 Live Demo
+
+**Try Focus Flow:** [Open the live website]https://focus-flow-lyart-six.vercel.app/
+
+**Source Code:** https://github.com/tantrivinay/focus-flow
+
+
+
+
+
 # Focus Flow 🎯
 
 > **A gamified productivity dashboard for college students** — built with React, Vite, TypeScript, Tailwind CSS, and Framer Motion.
